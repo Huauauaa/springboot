@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.huauauaa.springboot.entity.User;
 import com.huauauaa.springboot.service.UserService;
+import com.huauauaa.springboot.util.Result;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,15 +21,18 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/list")
-    public Page<User> list(@RequestParam(defaultValue = "1", required = false) Integer currentPage,
+    public Result<Page<User>> list(@RequestParam(defaultValue = "1", required = false) Integer currentPage,
             @RequestParam(defaultValue = "10", required = false) Integer pageSize,
             @RequestParam(defaultValue = "", required = false) String q) {
-        QueryWrapper queryWrapper = new QueryWrapper<User>();
-        if (q != null) {
-            queryWrapper.like("firstName", q);
-        }
+        QueryWrapper<User> queryWrapper = new QueryWrapper<User>();
+        queryWrapper.like("firstName", q);
         Page<User> pager = new Page<>(currentPage, pageSize);
         pager.addOrder(OrderItem.desc("id"));
-        return userService.page(pager, queryWrapper);
+        return Result.success(userService.page(pager, queryWrapper));
+    }
+
+    @GetMapping("/wrong")
+    public Result<Object> wrong() {
+        return Result.failure("something wrong");
     }
 }
