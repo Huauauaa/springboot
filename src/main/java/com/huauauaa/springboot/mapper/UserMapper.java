@@ -11,7 +11,5 @@ import com.huauauaa.springboot.entity.User;
 
 @Repository
 public interface UserMapper extends BaseMapper<User> {
-    @Select("select id, firstName, lastName, age from user")
-    List<User> getUsersFromDB(Page<User> page);
 
 }
