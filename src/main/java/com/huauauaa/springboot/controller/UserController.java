@@ -25,7 +25,7 @@ public class UserController {
             @RequestParam(defaultValue = "10", required = false) Integer pageSize,
             @RequestParam(defaultValue = "", required = false) String q) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<User>();
-        queryWrapper.like("firstName", q);
+        queryWrapper.select("id", "firstName", "left(lastName, 2) lastName").like("firstName", q);
         Page<User> pager = new Page<>(currentPage, pageSize);
         pager.addOrder(OrderItem.desc("id"));
         return Result.success(userService.page(pager, queryWrapper));
