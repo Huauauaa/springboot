@@ -1,11 +1,13 @@
 package com.huauauaa.springboot.service;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.huauauaa.springboot.entity.User;
-import com.huauauaa.springboot.mapper.UserMapper;
+import com.huauauaa.springboot.vo.UserVO;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService extends ServiceImpl<UserMapper, User> {
+public interface UserService extends IService<User> {
+    Page<UserVO> getMixedUsers(Page<UserVO> page);
 }
