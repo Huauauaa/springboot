@@ -31,14 +31,6 @@ public class UserController {
         return Result.success(userService.page(pager, null));
     }
 
-    @GetMapping("/demo")
-    public Result<Page<User>> list(@RequestParam(defaultValue = "1", required = false) Integer currentPage,
-            @RequestParam(defaultValue = "10", required = false) Integer pageSize) {
-        Page<User> pager = new Page<>(currentPage, pageSize);
-        pager.addOrder(OrderItem.desc("id"));
-        return Result.success(userService.page(pager, null));
-    }
-
     @GetMapping("/wrong")
     public Result<Object> wrong() {
         return Result.failure("something wrong");

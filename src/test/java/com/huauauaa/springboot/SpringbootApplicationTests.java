@@ -3,10 +3,9 @@ package com.huauauaa.springboot;
 import java.util.List;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.huauauaa.springboot.entity.User;
 import com.huauauaa.springboot.mapper.UserMapper;
 import com.huauauaa.springboot.service.UserServiceImpl;
-import com.huauauaa.springboot.vo.UserVO;
+import com.huauauaa.springboot.entity.User;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +28,8 @@ class SpringbootApplicationTests {
 
 	@Test
 	public void testAddField() {
-		Page<UserVO> pageParam = new Page<>(1, 3);
-		Page<UserVO> result = userService.getMixedUsers(pageParam);
+		Page<User> pageParam = new Page<>(1, 3);
+		Page<User> result = userService.getMixedUsers(pageParam);
 		result.getRecords().forEach(System.out::println);
 	}
 

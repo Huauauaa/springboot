@@ -4,9 +4,8 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.huauauaa.springboot.entity.User;
 import com.huauauaa.springboot.mapper.UserMapper;
-import com.huauauaa.springboot.vo.UserVO;
+import com.huauauaa.springboot.entity.User;
 
 import org.springframework.stereotype.Service;
 
@@ -14,8 +13,8 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Override
-    public Page<UserVO> getMixedUsers(Page<UserVO> page) {
-        List<UserVO> records = this.baseMapper.getUsersFromDB(page);
+    public Page<User> getMixedUsers(Page<User> page) {
+        List<User> records = this.baseMapper.getUsersFromDB(page);
         // custom logic
         records.forEach(item -> item.setRemarks("aaa"));
         return page.setRecords(records);

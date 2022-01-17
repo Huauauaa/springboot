@@ -1,23 +1,23 @@
 package com.huauauaa.springboot.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
+import java.io.Serializable;
+
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 
 import lombok.Data;
 
 @Data
-@TableName(value = "user")
-public class User {
-    @TableId(type = IdType.AUTO)
+public class User implements Serializable {
     private Long id;
 
-    @TableField(value = "firstName")
+    @TableField("firstName")
     private String firstName;
 
-    @TableField(value = "lastName")
+    @TableField("lastName")
     private String lastName;
 
     private Integer age;
+
+    @TableField(exist = false)
+    private String remarks;
 }
