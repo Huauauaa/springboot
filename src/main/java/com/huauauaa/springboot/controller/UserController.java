@@ -28,7 +28,15 @@ public class UserController {
         queryWrapper.select("id", "firstName", "left(lastName, 2) lastName").like("firstName", q);
         Page<User> pager = new Page<>(currentPage, pageSize);
         pager.addOrder(OrderItem.desc("id"));
-        return Result.success(userService.page(pager, queryWrapper));
+        return Result.success(userService.page(pager, null));
+    }
+
+    @GetMapping("/demo")
+    public Result<Page<User>> list(@RequestParam(defaultValue = "1", required = false) Integer currentPage,
+            @RequestParam(defaultValue = "10", required = false) Integer pageSize) {
+        Page<User> pager = new Page<>(currentPage, pageSize);
+        pager.addOrder(OrderItem.desc("id"));
+        return Result.success(userService.page(pager, null));
     }
 
     @GetMapping("/wrong")
